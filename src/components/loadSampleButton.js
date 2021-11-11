@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 //import { goToAnchor } from 'react-scrollable-anchor'
 
-class SampleButton extends React.Component {
+class LoadSampleButton extends React.Component {
   constructor(props) {
     super(props);
     
@@ -34,7 +34,7 @@ class SampleButton extends React.Component {
   }
 }
 
-SampleButton.propTypes = {
+LoadSampleButton.propTypes = {
   operations: PropTypes.number,
   realTimeUpdates: PropTypes.number,
   connectionMinutes: PropTypes.number,
@@ -43,4 +43,4 @@ SampleButton.propTypes = {
   sampleCallback: PropTypes.func
 };
 
-export default SampleButton;
+export default LoadSampleButton;

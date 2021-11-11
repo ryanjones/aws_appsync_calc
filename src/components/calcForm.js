@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Grid, Segment, Header, Message, Table } from 'semantic-ui-react'
-import SampleButton from './sampleButton'
+import LoadSampleButton from './loadSampleButton'
 
 class CalcForm extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class CalcForm extends React.Component {
   }
 
   handleCalculations = (event) => {
-    if (event.target.value != '') {
+    if (event.target.value !== '') {
       this.setState({
         [event.target.name]: event.target.value
       }, () => this.checkCalculation());
@@ -50,10 +50,10 @@ class CalcForm extends React.Component {
 
         this.setState({
           totalCost: cost,
-          operationsLabel: 'Query and Data Modification Operations ' + '- $' +  parseFloat(Math.round(operationCharges * 100) / 100).toFixed(2),
-          transferChargesLabel: 'Data Transfer Charges (GB) ' + '- $' + parseFloat(Math.round(transferCharges * 100) / 100).toFixed(2),
-          realTimeUpdatesLabel: 'Real-time Updates ' + '- $' + parseFloat(Math.round(realTimeUpdatesCharges * 100) / 100).toFixed(2),
-          connectionMinutesLabel: 'Connectivity Minutes ' + '- $' + parseFloat(Math.round(connectionMinutes * 100) / 100).toFixed(2) 
+          operationsLabel: 'Query and Data Modification Operations - $' +  parseFloat(Math.round(operationCharges * 100) / 100).toFixed(2),
+          transferChargesLabel: 'Data Transfer Charges (GB) - $' + parseFloat(Math.round(transferCharges * 100) / 100).toFixed(2),
+          realTimeUpdatesLabel: 'Real-time Updates - $' + parseFloat(Math.round(realTimeUpdatesCharges * 100) / 100).toFixed(2),
+          connectionMinutesLabel: 'Connectivity Minutes - $' + parseFloat(Math.round(connectionMinutes * 100) / 100).toFixed(2) 
         })
     }
   }
@@ -204,7 +204,7 @@ class CalcForm extends React.Component {
                     </Table.Row>
                   </Table.Body>
                 </Table>
-                <SampleButton sampleCallback={this.populateSample} 
+                <LoadSampleButton sampleCallback={this.populateSample} 
                             operations={1000} 
                             realTimeUpdates={1000}
                             connectionMinutes={1500}
