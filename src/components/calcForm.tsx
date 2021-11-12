@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Form, Grid, Segment, Header, Message, Table, Button } from 'semantic-ui-react'
 
 function CalcForm() {
-  const [operations, setOperations] = useState('');
-  const [realTimeUpdates, setRealTimeUpdates] = useState('');
-  const [connectionMinutes, setConnectionMinutes] = useState('');
-  const [userCount, setUserCount] = useState('');
-  const [transferCharges, setTransferCharges] = useState('');
-  const [totalCost, setTotalCost] = useState(0);
-  const [operationsLabel, setOperationsLabel] = useState('Query and Data Modification Operations');
-  const [transferChargesLabel, setTransferChargesLabel] = useState('Data Transfer Charges (GB)');
-  const [realTimeUpdatesLabel, setRealTimeUpdatesLabel] = useState('Real-time Updates');
-  const [connectionMinutesLabel, setConnectionMinutesLabel] = useState('Connectivity Minutes');
+  const [operations, setOperations] = useState<number>(0);
+  const [realTimeUpdates, setRealTimeUpdates] = useState<number>(0);
+  const [connectionMinutes, setConnectionMinutes] = useState<number>(0);
+  const [userCount, setUserCount] = useState<number>(0);
+  const [transferCharges, setTransferCharges] = useState<number>(0);
+  const [totalCost, setTotalCost] = useState<number>(0);
+  const [operationsLabel, setOperationsLabel] = useState<string>('Query and Data Modification Operations');
+  const [transferChargesLabel, setTransferChargesLabel] = useState<string>('Data Transfer Charges (GB)');
+  const [realTimeUpdatesLabel, setRealTimeUpdatesLabel] = useState<string>('Real-time Updates');
+  const [connectionMinutesLabel, setConnectionMinutesLabel] = useState<string>('Connectivity Minutes');
 
   useEffect(() => {
     checkCalculation();
   });
 
-  const handleCalculations = (event) => {
-    let eventName = event.target.name;
-    let eventValue = event.target.value;
+  const handleCalculations = (e: ChangeEvent<HTMLInputElement>) => {
+    let eventName = e.target.name;
+    let eventValue = Number(e.target.value);
     if (eventName === "operations") {
       setOperations(eventValue)
     }
@@ -42,24 +42,24 @@ function CalcForm() {
   const checkCalculation = () => {
     if (operations && realTimeUpdates &&
       connectionMinutes && userCount) {
-      let costLabel = 0;
-      let operationChargesLabel = 0;
-      let realTimeUpdatesChargesLabel = 0;
-      let connectionMinutesLabel = 0;
-      let transferChargesLabel = 0;
+      let costLabel: number = 0;
+      let operationChargesLabel: number = 0;
+      let realTimeUpdatesChargesLabel: number = 0;
+      let connectionMinutesLabel: number = 0;
+      let transferChargesLabel: number = 0;
 
       operationChargesLabel = (userCount * operations * 4) / 1000000;
       transferChargesLabel = transferCharges * 0.09; // US West (Oregon)
       realTimeUpdatesChargesLabel = (userCount * realTimeUpdates * 2) / 1000000;
       connectionMinutesLabel = (userCount * connectionMinutes * 0.08) / 1000000;
       costLabel = operationChargesLabel + transferChargesLabel + realTimeUpdatesChargesLabel + connectionMinutesLabel;
-      costLabel = parseFloat(Math.round(costLabel * 100) / 100).toFixed(2);
+      costLabel = Math.round(costLabel * 100) / 100;
 
       setTotalCost(costLabel);
-      setOperationsLabel('Query and Data Modification Operations - $' + parseFloat(Math.round(operationChargesLabel * 100) / 100).toFixed(2));
-      setTransferChargesLabel('Data Transfer Charges (GB) - $' + parseFloat(Math.round(transferChargesLabel * 100) / 100).toFixed(2));
-      setRealTimeUpdatesLabel('Real-time Updates - $' + parseFloat(Math.round(realTimeUpdatesChargesLabel * 100) / 100).toFixed(2));
-      setConnectionMinutesLabel('Connectivity Minutes - $' + parseFloat(Math.round(connectionMinutesLabel * 100) / 100).toFixed(2));
+      setOperationsLabel('Query and Data Modification Operations - $' + parseFloat(String(Math.round(operationChargesLabel * 100) / 100)).toFixed(2));
+      setTransferChargesLabel('Data Transfer Charges (GB) - $' + parseFloat(String(Math.round(transferChargesLabel * 100) / 100)).toFixed(2));
+      setRealTimeUpdatesLabel('Real-time Updates - $' + parseFloat(String(Math.round(realTimeUpdatesChargesLabel * 100) / 100)).toFixed(2));
+      setConnectionMinutesLabel('Connectivity Minutes - $' + parseFloat(String(Math.round(connectionMinutesLabel * 100) / 100)).toFixed(2));
     }
   }
 
@@ -143,7 +143,8 @@ function CalcForm() {
                   value={totalCost}
                   name="totalCost"
                   className="totalCost"
-                  readOnly='true'
+                  readOnly={true}
+                  disabled={true}
                 />
               </Form>
             </Grid.Column>
