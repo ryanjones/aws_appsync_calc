@@ -8,7 +8,7 @@ import {
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import CalcForm from './components/calcForm'
+import CalcForm from './components/CalcForm'
 
 
 ReactDOM.render(
