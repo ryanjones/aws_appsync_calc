@@ -22,28 +22,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "jest": "jest",
     "jest:coverage": "jest --coverage",
     "jest:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "jest:watch": "jest --watch"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.js$": "babel-jest"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "bower_components"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/setupTests.js"
-    ]
   },
   "eslintConfig": {
     "extends": [

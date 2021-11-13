@@ -213,7 +213,7 @@ function CalcForm() {
                     </Table.Row>
                   </Table.Body>
                 </Table>
-                <Button onClick={populateSampleData}>Populate Sample Data</Button>
+                <Button className="populate-data" onClick={populateSampleData}>Populate Sample Data</Button>
               </Message>
             </Grid.Column>
           </Grid.Row>
